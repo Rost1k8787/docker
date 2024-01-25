@@ -14,6 +14,11 @@ public class Cons extends FunList {
         _cdr = cdr;
     }
 
+    public Cons(int i) {
+    _dat = i;
+    _cdr = Empty.UniqueInstance();
+    }
+
     /**
      * @param i a left side (head) of the list.
      */

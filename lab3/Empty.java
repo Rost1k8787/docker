@@ -3,10 +3,15 @@
  * @author Vyacheslav Moskalenko
  * @since JDK1.4
  */
- 
 public class Empty extends FunList {
 
-    public Empty() {}
+    private static Empty UniqueInstance = new Empty();
+
+    private Empty() {}
+
+    public static Empty UniqueInstance() {
+        return UniqueInstance;
+    }
 
     public int car() {
         throw new java.util.NoSuchElementException("car requires a non Empty Funlist");

@@ -24,10 +24,30 @@ public abstract class FunList {
      */
     public String toString() {
         return "(" + toStringHelp() + " ) ";
-    }
+    };
 
+    public FunList insertInOrder(int i) {
+    if (isEmpty()) {
+        return new Cons(i, Empty.UniqueInstance());
+    } else if (i <= car()) {
+        return new Cons(i, this);
+    } else {
+        return new Cons(car(), cdr().insertInOrder(i));
+    }
+   };
+
+   public FunList sort() {
+    if (isEmpty()) {
+        return Empty.UniqueInstance();
+    } else {
+        return cdr().sort().insertInOrder(car());
+    }
+    }
+    
     /**
      * @return a String description of the list object
      */
+
+     return new Cons(car(), cdr().append(other));
     abstract String toStringHelp();
 }
