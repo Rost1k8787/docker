@@ -5,19 +5,38 @@ public class Movie {
     public static final int NEW_RELEASE = 1;
 
     public String _title;
-    private int _priceCode;
+    private Price _price;
 
     public Movie(String title, int priceCode) {
         _title = title;
-        _priceCode = priceCode;
+        setPriceCode(priceCode);
     }
 
     public int getPriceCode() {
-        return _priceCode;
+        return _price.getPriceCode();
     }
 
-    public void setPriceCode(int arg) {
-        _priceCode = arg;
+    public void setPriceCode(int priceCode) {
+        switch (priceCode) {
+            case CHILDRENS:
+                _price = new ChildrensPrice();
+                break;
+            case REGULAR:
+                _price = new RegularPrice();
+                break;
+            case NEW_RELEASE:
+                _price = new NewReleasePrice();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid price code");
+        }
     }
 
+    public double getCharge(int daysRented) {
+        return _price.getCharge(daysRented);
+    }
+
+    public int getFrequentRenterPoints(int daysRented) {
+        return _price.getFrequentRenterPoints(daysRented);
+    }
 }
